@@ -28,11 +28,13 @@
 	}
 
 	$.fn.scrollTable = function(options) {
-		
+			
+		//if this function was already applied to the table don't do it again.
 		if($(this).data('scrolltable')) {
 			return this;
 		}
 
+		//extend the options and defaults
 		var settings = $.extend({
 			headerClass: 'scrollHeader',
 			headerHeight: $(this).find('thead').height() || $(this).find('tr:eq(0)').height(),
@@ -41,6 +43,7 @@
 			scrollHeight: 300
 		}, options);
 
+		//adjust the width of the table to account for scroll bar
 		settings.scrollBarWidth = getScrollbarWidth();
 		$(this).width($(this).width() - settings.scrollBarWidth);
 		
@@ -55,9 +58,11 @@
 
 			var $this = $(this);
 
-			$this.data('scrolltable', true);
-
 			var clone = $this.clone();
+
+			//add scrolltable to the data of both the original object and its clone
+			$this.data('scrolltable', true);
+			clone.data('scrolltable', true);
 
 			$this.css({
 				'margin-top': - settings.headerHeight
