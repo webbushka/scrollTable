@@ -29,11 +29,6 @@
 
 	$.fn.scrollTable = function(options) {
 			
-		//if this function was already applied to the table don't do it again.
-		if($(this).data('scrolltable')) {
-			return this;
-		}
-
 		//extend the options and defaults
 		var settings = $.extend({
 			headerClass: 'scrollHeader',
@@ -56,8 +51,12 @@
 
 		return this.each(function() {
 
-			var $this = $(this);
+			//if this function was already applied to the table don't do it again.
+			if($(this).data('scrolltable')) {
+				return;
+			}
 
+			var $this = $(this);
 			var clone = $this.clone();
 
 			//add scrolltable to the data of both the original object and its clone
