@@ -1,7 +1,7 @@
 Scroll Table
 ===========
 
-Version: 1.0
+Version: 1.0.1
 Requires: [jQuery](http://jquery.com)	
 Demo: [jsfiddle](http://jsfiddle.net/aFMaJ/1/)  
 Git: [https://github.com/webbushka/scrollTable](https://github.com/webbushka/scrollTable)
@@ -48,7 +48,8 @@ The max height of the scroll area
 
 Changelog
 ---------
-v0.1 - Inital Commit	
+* v1.0.1 - Remove the padding and margin from the table to ensure the scrollArea and headerHeight are accurate  
+* v1.0 - Inital Commit	
 
 Credit
 ------

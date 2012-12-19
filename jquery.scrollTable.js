@@ -1,6 +1,6 @@
 /*global jQuery */
 /*!
-* ScrollTable.js 1.0
+* ScrollTable.js 1.0.1
 *
 * Copyright 2012, AJ Webb http://ajwebb.me
 * Released under the MIT license
@@ -40,8 +40,11 @@
 		settings.tableWidth = $(this).width();
 		settings.scrollBarWidth = getScrollbarWidth();
 
-		console.log(settings.tableWidth);
-		
+		$(this).css({
+			padding: 0,
+			margin: 0
+		});
+
 		return this.each(function() {
 
 			var $this = $(this);
