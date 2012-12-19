@@ -3,7 +3,7 @@ Scroll Table
 
 Version: 1.0
 Requires: [jQuery](http://jquery.com)	
-Demo: [jsfiddle](http://jsfiddle.net/aFMaJ/)  
+Demo: [jsfiddle](http://jsfiddle.net/aFMaJ/1/)  
 Git: [https://github.com/webbushka/scrollTable](https://github.com/webbushka/scrollTable)
 
 Description
