@@ -1,6 +1,6 @@
 /*global jQuery */
 /*!
-* ScrollTable.js 1.0.2
+* ScrollTable.js 1.1
 *
 * Copyright 2012, AJ Webb http://ajwebb.me
 * Released under the MIT license
@@ -29,6 +29,10 @@
 
 	$.fn.scrollTable = function(options) {
 		
+		if($(this).data('scrolltable')) {
+			return this;
+		}
+
 		var settings = $.extend({
 			headerClass: 'scrollHeader',
 			headerHeight: $(this).find('thead').height() || $(this).find('tr:eq(0)').height(),
@@ -50,26 +54,33 @@
 		return this.each(function() {
 
 			var $this = $(this);
-			var clone = $this.clone().css({
+
+			$this.data('scrolltable', true);
+
+			var clone = $this.clone();
+
+			$this.css({
 				'margin-top': - settings.headerHeight
-			});
-
-			$this.wrap($('<div />', {
-				'class': settings.headerClass
-			}).css({
-				height: settings.headerHeight,
-				overflow: 'hidden',
-				width: settings.tableWidth
-			}));
-
-			$this.parent('.'+settings.headerClass).after($('<div />', {
+			}).wrap($('<div />', {
 				'class': settings.scrollClass
-			}).append(clone).css({
+			}).css({
 				'max-height': settings.scrollHeight,
 				'overflow-y': 'auto',
 				'overflow-x': 'hidden',
 				width: (settings.scrollBar)? settings.tableWidth + settings.scrollBarWidth : settings.tableWidth
 			}));
+
+			$this.parent('.'+settings.scrollClass).before($('<div />', {
+				'class': settings.headerClass
+			}).css({
+				height: settings.headerHeight,
+				overflow: 'hidden',
+				width: settings.tableWidth
+			}).append(clone));
+
+			clone.find('tbody').css({
+				visibility: 'hidden'
+			});
 
 		});
 	};
