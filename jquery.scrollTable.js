@@ -1,6 +1,6 @@
 /*global jQuery */
 /*!
-* ScrollTable.js 1.0.1
+* ScrollTable.js 1.0.2
 *
 * Copyright 2012, AJ Webb http://ajwebb.me
 * Released under the MIT license
@@ -14,7 +14,7 @@
 
 	var scrollbarWidth = 0;
 
-	// http://jdsharp.us/jQuery/minute/calculate-scrollbar-width.php
+	/*! http://jdsharp.us/jQuery/minute/calculate-scrollbar-width.php */
 	function getScrollbarWidth() {
 		if (scrollbarWidth) return scrollbarWidth;
 		var div = $('<div style="width:50px;height:50px;overflow:hidden;position:absolute;top:-200px;left:-200px;"><div style="height:100px;"></div></div>');
@@ -37,8 +37,10 @@
 			scrollHeight: 300
 		}, options);
 
-		settings.tableWidth = $(this).width();
 		settings.scrollBarWidth = getScrollbarWidth();
+		$(this).width($(this).width() - settings.scrollBarWidth);
+		
+		settings.tableWidth = $(this).width();
 
 		$(this).css({
 			padding: 0,
@@ -64,7 +66,8 @@
 				'class': settings.scrollClass
 			}).append(clone).css({
 				'max-height': settings.scrollHeight,
-				overflow: 'auto',
+				'overflow-y': 'auto',
+				'overflow-x': 'hidden',
 				width: (settings.scrollBar)? settings.tableWidth + settings.scrollBarWidth : settings.tableWidth
 			}));
 

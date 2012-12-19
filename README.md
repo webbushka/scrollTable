@@ -34,7 +34,7 @@ the height of the header (automatically calculated but available to tweak)
 ###scrollBar 
 *type: boolean*  
 *default: true*  
-Whether or not to account for the scroll bar
+Whether or not to account for the scroll bar (if false the scrollbar overlaps the content)
 
 ###scrollClass 
 *type: string*  
@@ -48,6 +48,7 @@ The max height of the scroll area
 
 Changelog
 ---------
+* v1.0.2 - Bug fixes on accounting for the scrollbar.
 * v1.0.1 - Remove the padding and margin from the table to ensure the scrollArea and headerHeight are accurate  
 * v1.0 - Inital Commit	
 
