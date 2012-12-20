@@ -38,23 +38,23 @@
 			scrollHeight: 300
 		}, options);
 
-		//adjust the width of the table to account for scroll bar
-		settings.scrollBarWidth = getScrollbarWidth();
-		$(this).width($(this).width() - settings.scrollBarWidth);
-		
-		settings.tableWidth = $(this).width();
-
-		$(this).css({
-			padding: 0,
-			margin: 0
-		});
-
 		return this.each(function() {
 
 			//if this function was already applied to the table don't do it again.
 			if($(this).data('scrolltable')) {
 				return;
 			}
+
+			//adjust the width of the table to account for scroll bar
+			settings.scrollBarWidth = getScrollbarWidth();
+			$(this).width($(this).width() - settings.scrollBarWidth);
+			
+			settings.tableWidth = $(this).width();
+
+			$(this).css({
+				padding: 0,
+				margin: 0
+			});
 
 			var $this = $(this);
 			var clone = $this.clone();
