@@ -63,6 +63,13 @@
 			$this.data('scrolltable', true);
 			clone.data('scrolltable', true);
 
+			clone.find('tbody').css({
+				visibility: 'hidden'
+			});
+
+			//strip all the ids out of the clone
+			clone.find('div, span, p, ul, li, a, input, label, td, tr, th, tbody, thead, table').removeAttr('id').removeAttr('checked');
+
 			$this.css({
 				'margin-top': - settings.headerHeight
 			}).wrap($('<div />', {
@@ -81,10 +88,6 @@
 				overflow: 'hidden',
 				width: settings.tableWidth
 			}).append(clone));
-
-			clone.find('tbody').css({
-				visibility: 'hidden'
-			});
 
 		});
 	};
