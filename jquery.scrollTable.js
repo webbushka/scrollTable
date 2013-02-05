@@ -1,6 +1,6 @@
 /*global jQuery */
 /*!
-* ScrollTable.js 1.1
+* ScrollTable.js 1.2
 *
 * Copyright 2012, AJ Webb http://ajwebb.me
 * Released under the MIT license
@@ -15,6 +15,7 @@
 	var scrollbarWidth = 0;
 
 	/*! http://jdsharp.us/jQuery/minute/calculate-scrollbar-width.php */
+
 	function getScrollbarWidth() {
 		if (scrollbarWidth) return scrollbarWidth;
 		var div = $('<div style="width:50px;height:50px;overflow:hidden;position:absolute;top:-200px;left:-200px;"><div style="height:100px;"></div></div>');
@@ -28,7 +29,7 @@
 	}
 
 	$.fn.scrollTable = function(options) {
-			
+
 		//extend the options and defaults
 		var settings = $.extend({
 			headerClass: 'scrollHeader',
@@ -41,14 +42,14 @@
 		return this.each(function() {
 
 			//if this function was already applied to the table don't do it again.
-			if($(this).data('scrolltable')) {
+			if ($(this).data('scrolltable')) {
 				return;
 			}
 
 			//adjust the width of the table to account for scroll bar
 			settings.scrollBarWidth = getScrollbarWidth();
 			$(this).width($(this).width() - settings.scrollBarWidth);
-			
+
 			settings.tableWidth = $(this).width();
 
 			$(this).css({
@@ -57,7 +58,7 @@
 			});
 
 			var $this = $(this);
-			var clone = $this.clone();
+			var clone = $this.clone(true, true);
 
 			//add scrolltable to the data of both the original object and its clone
 			$this.data('scrolltable', true);
@@ -67,21 +68,23 @@
 				visibility: 'hidden'
 			});
 
-			//strip all the ids out of the clone
-			clone.find('div, span, p, ul, li, a, input, label, td, tr, th, tbody, thead, table').removeAttr('id').removeAttr('checked');
+			//strip all the ids and data out of the clone
+			clone.removeAttr('id');
+			clone.removeData();
+			clone.find('div, span, p, ul, li, a, input, label, td, tr, th, tbody, thead, table').removeAttr('id').removeAttr('checked').removeAttr('name').removeData();
 
 			$this.css({
-				'margin-top': - settings.headerHeight
+				'margin-top': -settings.headerHeight
 			}).wrap($('<div />', {
 				'class': settings.scrollClass
 			}).css({
 				'max-height': settings.scrollHeight,
 				'overflow-y': 'auto',
 				'overflow-x': 'hidden',
-				width: (settings.scrollBar)? settings.tableWidth + settings.scrollBarWidth : settings.tableWidth
+				width: (settings.scrollBar) ? settings.tableWidth + settings.scrollBarWidth : settings.tableWidth
 			}));
 
-			$this.parent('.'+settings.scrollClass).before($('<div />', {
+			$this.parent('.' + settings.scrollClass).before($('<div />', {
 				'class': settings.headerClass
 			}).css({
 				height: settings.headerHeight,
