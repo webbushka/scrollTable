@@ -1,7 +1,7 @@
 Scroll Table
 ===========
 
-Version: 1.2
+Version: 1.2  
 Requires: [jQuery](http://jquery.com)	
 Demo: [jsfiddle](http://jsfiddle.net/aFMaJ/1/)  
 Git: [https://github.com/webbushka/scrollTable](https://github.com/webbushka/scrollTable)
